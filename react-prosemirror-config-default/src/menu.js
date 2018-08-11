@@ -62,24 +62,24 @@ export default {
       active: markActive(schema.marks.strong),
       run: toggleMark(schema.marks.strong)
     },
-    code: {
-      title: 'Toggle code',
-      content: icons.code,
-      active: markActive(schema.marks.code),
-      run: toggleMark(schema.marks.code)
-    },
-    subscript: {
-      title: 'Toggle subscript',
-      content: icons.subscript,
-      active: markActive(schema.marks.subscript),
-      run: toggleMark(schema.marks.subscript)
-    },
-    superscript: {
-      title: 'Toggle superscript',
-      content: icons.superscript,
-      active: markActive(schema.marks.superscript),
-      run: toggleMark(schema.marks.superscript)
-    },
+    // code: {
+    //   title: 'Toggle code',
+    //   content: icons.code,
+    //   active: markActive(schema.marks.code),
+    //   run: toggleMark(schema.marks.code)
+    // },
+    // subscript: {
+    //   title: 'Toggle subscript',
+    //   content: icons.subscript,
+    //   active: markActive(schema.marks.subscript),
+    //   run: toggleMark(schema.marks.subscript)
+    // },
+    // superscript: {
+    //   title: 'Toggle superscript',
+    //   content: icons.superscript,
+    //   active: markActive(schema.marks.superscript),
+    //   run: toggleMark(schema.marks.superscript)
+    // },
     underline: {
       title: 'Toggle underline',
       content: icons.underline,
@@ -92,24 +92,24 @@ export default {
       active: markActive(schema.marks.strikethrough),
       run: toggleMark(schema.marks.strikethrough)
     },
-    link: {
-      title: 'Add or remove link',
-      content: icons.link,
-      active: markActive(schema.marks.link),
-      enable: state => !state.selection.empty,
-      run (state, dispatch) {
-        if (markActive(schema.marks.link)(state)) {
-          toggleMark(schema.marks.link)(state, dispatch)
-          return true
-        }
+    // link: {
+    //   title: 'Add or remove link',
+    //   content: icons.link,
+    //   active: markActive(schema.marks.link),
+    //   enable: state => !state.selection.empty,
+    //   run (state, dispatch) {
+    //     if (markActive(schema.marks.link)(state)) {
+    //       toggleMark(schema.marks.link)(state, dispatch)
+    //       return true
+    //     }
 
-        const href = promptForURL()
-        if (!href) return false
+    //     const href = promptForURL()
+    //     if (!href) return false
 
-        toggleMark(schema.marks.link, { href })(state, dispatch)
-        // view.focus()
-      }
-    }
+    //     toggleMark(schema.marks.link, { href })(state, dispatch)
+    //     // view.focus()
+    //   }
+    // }
   },
   blocks: {
     plain: {
@@ -119,13 +119,13 @@ export default {
       enable: setBlockType(schema.nodes.paragraph),
       run: setBlockType(schema.nodes.paragraph)
     },
-    code_block: {
-      title: 'Change to code block',
-      content: icons.code_block,
-      active: blockActive(schema.nodes.code_block),
-      enable: setBlockType(schema.nodes.code_block),
-      run: setBlockType(schema.nodes.code_block)
-    },
+    // code_block: {
+    //   title: 'Change to code block',
+    //   content: icons.code_block,
+    //   active: blockActive(schema.nodes.code_block),
+    //   enable: setBlockType(schema.nodes.code_block),
+    //   run: setBlockType(schema.nodes.code_block)
+    // },
     h1: {
       title: 'Change to heading level 1',
       content: icons.heading,
@@ -161,41 +161,41 @@ export default {
       enable: wrapInList(schema.nodes.ordered_list),
       run: wrapInList(schema.nodes.ordered_list)
     },
-    lift: {
-      title: 'Lift out of enclosing block',
-      content: icons.lift,
-      enable: lift,
-      run: lift
-    },
-    join_up: {
-      title: 'Join with above block',
-      content: icons.join_up,
-      enable: joinUp,
-      run: joinUp
-    }
+    // lift: {
+    //   title: 'Lift out of enclosing block',
+    //   content: icons.lift,
+    //   enable: lift,
+    //   run: lift
+    // },
+    // join_up: {
+    //   title: 'Join with above block',
+    //   content: icons.join_up,
+    //   enable: joinUp,
+    //   run: joinUp
+    // }
   },
-  insert: {
-    image: {
-      title: 'Insert image',
-      content: icons.image,
-      enable: canInsert(schema.nodes.image),
-      run: (state, dispatch) => {
-        const src = promptForURL()
-        if (!src) return false
+  // insert: {
+  //   image: {
+  //     title: 'Insert image',
+  //     content: icons.image,
+  //     enable: canInsert(schema.nodes.image),
+  //     run: (state, dispatch) => {
+  //       const src = promptForURL()
+  //       if (!src) return false
 
-        const img = schema.nodes.image.createAndFill({ src })
-        dispatch(state.tr.replaceSelectionWith(img))
-      }
-    },
-    footnote: {
-      title: 'Insert footnote',
-      content: icons.footnote,
-      enable: canInsert(schema.nodes.footnote),
-      run: (state, dispatch) => {
-        const footnote = schema.nodes.footnote.create()
-        dispatch(state.tr.replaceSelectionWith(footnote))
-      }
-    },
+  //       const img = schema.nodes.image.createAndFill({ src })
+  //       dispatch(state.tr.replaceSelectionWith(img))
+  //     }
+  //   },
+  //   footnote: {
+  //     title: 'Insert footnote',
+  //     content: icons.footnote,
+  //     enable: canInsert(schema.nodes.footnote),
+  //     run: (state, dispatch) => {
+  //       const footnote = schema.nodes.footnote.create()
+  //       dispatch(state.tr.replaceSelectionWith(footnote))
+  //     }
+  //   },
     // hr: {
     //   title: 'Insert horizontal rule',
     //   content: 'HR',
@@ -205,35 +205,35 @@ export default {
     //     dispatch(state.tr.replaceSelectionWith(hr))
     //   }
     // },
-    table: {
-      title: 'Insert table',
-      content: icons.table,
-      enable: canInsert(schema.nodes.table),
-      run: (state, dispatch) => {
-        // const { from } = state.selection
-        let rowCount = window && window.prompt('How many rows?', 2)
-        let colCount = window && window.prompt('How many columns?', 2)
+    // table: {
+    //   title: 'Insert table',
+    //   content: icons.table,
+    //   enable: canInsert(schema.nodes.table),
+    //   run: (state, dispatch) => {
+    //     // const { from } = state.selection
+    //     let rowCount = window && window.prompt('How many rows?', 2)
+    //     let colCount = window && window.prompt('How many columns?', 2)
 
-        const cells = []
-        while (colCount--) {
-          cells.push(schema.nodes.table_cell.createAndFill())
-        }
+    //     const cells = []
+    //     while (colCount--) {
+    //       cells.push(schema.nodes.table_cell.createAndFill())
+    //     }
 
-        const rows = []
-        while (rowCount--) {
-          rows.push(schema.nodes.table_row.createAndFill(null, cells))
-        }
+    //     const rows = []
+    //     while (rowCount--) {
+    //       rows.push(schema.nodes.table_row.createAndFill(null, cells))
+    //     }
 
-        const table = schema.nodes.table.createAndFill(null, rows)
-        dispatch(state.tr.replaceSelectionWith(table))
+    //     const table = schema.nodes.table.createAndFill(null, rows)
+    //     dispatch(state.tr.replaceSelectionWith(table))
 
-        // const tr = state.tr.replaceSelectionWith(table)
-        // tr.setSelection(Selection.near(tr.doc.resolve(from)))
-        // dispatch(tr.scrollIntoView())
-        // view.focus()
-      }
-    }
-  },
+    //     // const tr = state.tr.replaceSelectionWith(table)
+    //     // tr.setSelection(Selection.near(tr.doc.resolve(from)))
+    //     // dispatch(tr.scrollIntoView())
+    //     // view.focus()
+    //   }
+    // }
+  // },
   history: {
     undo: {
       title: 'Undo last change',
